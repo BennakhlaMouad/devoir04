@@ -29,9 +29,12 @@ export class ParfumService {
   }
 
   ajouterParfum(p: Parfum) {
+  const maxId = this.parfums.length > 0
+    ? Math.max(...this.parfums.map(x => x.idParfum))
+    : 0;
+    p.idParfum = maxId + 1;
     this.parfums.push(p);
-  }
-
+}
   supprimerParfum(p: Parfum) {
     const index = this.parfums.indexOf(p, 0);
     if (index > -1) {
